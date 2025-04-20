@@ -1,0 +1,95 @@
+body {
+  text-align: center;
+  background-color: #deb887; /* Light wood color */
+  background-image: url("images/tree-note-music.jpg"); /* Add a wood texture */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Makes the background stay fixed while scrolling */
+  font-family: "Georgia", serif; /* Classic serif font */
+}
+
+h1 {
+  font-size: 4rem;
+  color: #8b4513; /* SaddleBrown color */
+  font-family: "Times New Roman", serif;
+  text-shadow: 2px 2px #d2b48c; /* Tan shadow */
+  border-bottom: 2px solid #8b4513;
+  padding-bottom: 10px;
+}
+
+footer {
+  color: #8b4513;
+  font-family: "Georgia", serif;
+}
+
+.w {
+  background-image: url("images/tom1.png");
+}
+
+.a {
+  background-image: url("images/tom2.png");
+}
+
+.s {
+  background-image: url("images/tom3.png");
+}
+
+.d {
+  background-image: url("images/tom4.png");
+}
+
+.j {
+  background-image: url("images/snare.png");
+}
+
+/* .w:active, .a:active, .s:active, .d:active, .j:active, .k:active, .l:active {
+  box-shadow: 0 2px #8b4513;
+  transform: translateY(2px);
+} */
+
+.set {
+  margin: 5% auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pressed {
+  box-shadow: 0 3px 4px 0 #8b4513;
+  opacity: 0.7;
+}
+
+.drum {
+  outline: none;
+  font-size: 3rem;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  color: #f2eeec;
+  text-shadow: 1px 1px #d2b48c;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  margin: 10px;
+  background-color: #f8a847; /* Wheat color */
+  /* background-image: url("images/drum-pattern.jpg"); Add a drum pattern texture */
+  background-size: cover;
+  border: 3px solid #8b4513; /* Add a border */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 6px #8b4513; /* Add depth with shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover and active effects */
+}
+
+.drum:hover {
+  background-color: #d2b48c; /* Slightly darker tan on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+  box-shadow: 0 8px #8b4513; /* Deeper shadow on hover */
+  cursor: url("images/drum-cursor.png"), pointer; /* Custom drum cursor */
+}
+
+.drum:active {
+  color: #f8a847;
+  box-shadow: 0 3px #8b4513; /* Pressed effect */
+  transform: translateY(3px); /* Button moves down slightly */
+  background-color: #c19a6b; /* Darker tan when pressed */
+}
