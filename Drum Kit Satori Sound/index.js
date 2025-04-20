@@ -1,5 +1,17 @@
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
+// Map of keys to corresponding background images
+var backgroundImages = [
+   "images/tom1.png",
+  "images/tom2.png",
+  "images/tom3.png",
+  "images/tom4.png",
+  "images/snare.png",
+  "images/crash.png",
+  "images/kick.png",
+  "images/drum-cursor.png"
+ ];
+
 for (var i = 0; i < numberOfDrumButtons; i++) {
 
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
@@ -9,6 +21,14 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
     makeSound(buttonInnerHTML);
 
     buttonAnimation(buttonInnerHTML);
+     // Randomly change background image
+     var randomImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+     this.style.backgroundImage = `url('${randomImage}')`;
+
+    // // Change background image based on the button clicked
+    // if (backgroundImages[buttonInnerHTML]) {
+    //   this.style.backgroundImage = `url('${backgroundImages[buttonInnerHTML]}')`;
+    // }
 
   });
 

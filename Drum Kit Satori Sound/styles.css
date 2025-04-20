@@ -41,7 +41,13 @@ footer {
 .j {
   background-image: url("images/snare.png");
 }
+.k {
+  background-image: url("images/drum-cursor.png");
+}
 
+.l {
+  background-image: url("images/kick.png");
+}
 /* .w:active, .a:active, .s:active, .d:active, .j:active, .k:active, .l:active {
   box-shadow: 0 2px #8b4513;
   transform: translateY(2px);
