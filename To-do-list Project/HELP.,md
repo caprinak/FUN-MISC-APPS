@@ -1,0 +1,2 @@
+run on command line :
+node --experimental-modules solution.js
