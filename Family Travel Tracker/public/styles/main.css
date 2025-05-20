@@ -351,7 +351,7 @@ button {
 }
 .tab-view .typography ol > li:before {
   counter-increment: list1;
-  content: counter(list1) ".";
+  content: counter(list1) ".",
   position: absolute;
   top: 0;
   left: 0;
@@ -441,6 +441,66 @@ button {
 
 .spacer {
   margin-bottom: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.country-option {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.country-option:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.country-option input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.country-option label {
+    font-size: 1.1rem;
+    color: #495057;
+    cursor: pointer;
+}
+
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.button.secondary {
+    background-color: #6c757d;
+    margin-left: 1rem;
+}
+
+.button.secondary:hover {
+    background-color: #545b62;
+}
+
+form {
+    margin-top: 2rem;
 }
 
 @media screen and (max-width: 767px) {

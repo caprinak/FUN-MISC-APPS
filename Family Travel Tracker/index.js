@@ -56,37 +56,38 @@ app.post("/add", async (req, res) => {
 
   try {
     const [rows] = await db.query(
-      "SELECT country_code FROM countries WHERE LOWER(country_name) LIKE CONCAT('%', ?, '%')",
+      "SELECT country_code, country_name FROM countries WHERE LOWER(country_name) LIKE CONCAT('%', ?, '%')",
       [input.toLowerCase()]
     );
-    console.log("rows", rows);
+
     if (rows.length === 0) {
       console.log("Country not found");
       return res.redirect("/");
     }
-    // Check if the country is already visited
-    const [visitedRows] = await db.query(
-      "SELECT country_code FROM visited_countries WHERE country_code = ?",
-      [rows[0].country_code]
-    );
-    if (visitedRows.length > 0) {
-      console.log("Country already visited");
+
+    if (rows.length === 1) {
+      // If only one country found, proceed with existing logic
+      const [visitedRows] = await db.query(
+        "SELECT country_code FROM visited_countries WHERE country_code = ?",
+        [rows[0].country_code]
+      );
+      if (visitedRows.length > 0) {
+        console.log("Country already visited");
+        return res.redirect("/");
+      }
+
+      await db.query(
+        "INSERT INTO visited_countries (country_code) VALUES (?)",
+        [rows[0].country_code]
+      );
       return res.redirect("/");
     }
-    // Insert the country into the visited_countries table
-    // Use the first country code from the result
-    // You can modify this logic if you want to handle multiple countries
-    // or if you want to allow the user to select a specific country
-    // from the list of results.
-    // For now, we will just take the first result
-    // and insert it into the visited_countries table.
-  
-    const countryCode = rows[0].country_code;
-    await db.query(
-      "INSERT INTO visited_countries (country_code) VALUES (?)",
-      [countryCode]
-    );
-    res.redirect("/");
+
+    // If multiple countries found, show search results page
+    res.render("search-results.ejs", {
+      countries: rows,
+      searchTerm: input,
+    });
   } catch (err) {
     console.log(err);
     res.redirect("/");
@@ -97,6 +98,33 @@ app.post("/user", async (req, res) => {});
 app.post("/new", async (req, res) => {
   //Hint: The RETURNING keyword can return the data that was inserted.
   //https://www.postgresql.org/docs/current/dml-returning.html
+});
+app.post("/select-country", async (req, res) => {
+  const countryCode = req.body.countryCode;
+
+  try {
+    // Check if country is already visited
+    const [visitedRows] = await db.query(
+      "SELECT country_code FROM visited_countries WHERE country_code = ? AND user_id = ?",
+      [countryCode, currentUserId]
+    );
+
+    if (visitedRows.length > 0) {
+      console.log("Country already visited by this user");
+      return res.redirect("/");
+    }
+
+    // Add the selected country to visited_countries
+    await db.query(
+      "INSERT INTO visited_countries (country_code, user_id) VALUES (?, ?)",
+      [countryCode, currentUserId]
+    );
+
+    res.redirect("/");
+  } catch (err) {
+    console.error("Error adding selected country:", err);
+    res.redirect("/");
+  }
 });
 
 // Call initialize function to start the server

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results for "<span class="highlight"><%= searchTerm %></span>"</h1>
+        <form action="/select-country" method="POST">
+            <div class="search-results">
+                <% countries.forEach(country => { %>
+                    <div class="country-option">
+                        <input type="radio" id="<%= country.country_code %>" name="countryCode" value="<%= country.country_code %>" required>
+                        <label for="<%= country.country_code %>"><%= country.country_name %></label>
+                    </div>
+                <% }); %>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="button">Add Selected Country</button>
+                <a href="/" class="button secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
